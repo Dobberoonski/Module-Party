@@ -7,7 +7,7 @@ local qualitySlotsModuleBonus = {--TODO: mod settings
     ["legendary"] = 5
 }
 
-local getReadyToParty = {
+local getReadyToParty = {--made redundant
     type = "direct",
     action_delivery = {
         type = "instant",
@@ -61,7 +61,7 @@ for _,entityType in pairs(affectedEntityTypes) do
     for __,entity in pairs(data.raw[entityType]) do
         entity.quality_affects_module_slots = true
         entity.quality_slots_module_bonus = qualitySlotsModuleBonus
-        entity.created_effect = getReadyToParty
+        --entity.created_effect = getReadyToParty
     end
 end
 
