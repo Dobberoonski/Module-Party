@@ -3,8 +3,13 @@ local affectedEntityTypes = {
     "assembling-machine",
     "mining-drill",
     "lab",
-    "furnace"
+    "furnace",
+    "beacon"
 }
+
+local moduleName = {"productivity", "efficiency", "speed", "quality"}
+local moduleTier = {"", "-2", "-3"}
+local moduleQuality = {"normal", "uncommon", "rare", "epic", "legendary"}
 
 local function isAffectedEntityType(entityType)
     --isAffectedEntityType : entity.type -> bool
@@ -15,11 +20,15 @@ local function isAffectedEntityType(entityType)
 end
 
 local function getRandomModule()
-    return {name="efficiency-module", count=1, quality="normal"}
+    --getRandomModule : -> table
+    return {
+        name=moduleName[math.random(4)].. "-module".. moduleTier[math.random(3)],
+        count=1,
+        quality=moduleQuality[math.random(5)]
+    }
 end
 
 script.on_event(defines.events.on_built_entity, function(event)
-    --game.print("Name: ".. event.entity.name.. " Type: ".. event.entity.type)
     if not isAffectedEntityType(event.entity.type) then return false end
     while(event.entity.get_module_inventory().is_full() == false) do
         event.entity.get_module_inventory().insert(getRandomModule())

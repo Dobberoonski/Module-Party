@@ -11,17 +11,16 @@ local affectedEntityTypes = {
     "assembling-machine",
     "mining-drill",
     "lab",
-    "furnace"
+    "furnace",
+    "beacon"
 }
 
 local allowedEffects = {
     "productivity",
-    "consumption",--you'd think it'd be called "efficiency". Nah.
+    "consumption",
     "quality",
     "speed",
     "pollution"
-    --Failed to load mods: Error while loading entity prototype "burner-mining-drill" (mining-drill): Unknown effect string: efficiency
-    --bruhmoment.mp4
 }
 
 local effectReceiver = {
