@@ -21,6 +21,19 @@ qualityModuleTwoTech.prerequisites = {
     "space-science-pack"
 }
 
-data.raw["assembling-machine"]["foundry"].effect_receiver.base_effect.productivity = 0.55
-data.raw["assembling-machine"]["electromagnetic-plant"].effect_receiver.base_effect.productivity = 0.55
-data.raw["assembling-machine"]["biochamber"].effect_receiver.base_effect.productivity = 0.55
+local effectReceiverAdvanced = {
+    base_effect = {
+        consumption = -0.05,
+        speed = 0.05,
+        productivity = 0.55,
+        pollution = -0.05,
+        quality = 0.5
+    },
+    uses_module_effects = true,
+    uses_beacon_effects = true,
+    uses_surface_effects = true
+}
+
+data.raw["assembling-machine"]["foundry"].effect_receiver = effectReceiverAdvanced
+data.raw["assembling-machine"]["electromagnetic-plant"].effect_receiver = effectReceiverAdvanced
+data.raw["assembling-machine"]["biochamber"].effect_receiver = effectReceiverAdvanced

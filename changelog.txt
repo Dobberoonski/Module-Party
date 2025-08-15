@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.2
+Date: 16AUG2025
+  Bugfix:
+    - Fixed a bug from 1.0.2 where all machines had 55% productivity. Lol.
+---------------------------------------------------------------------------------------------------
+Version: 1.0.2
+Date: 16AUG2025
+  Bugfix:
+    - Foundries, Electromagnetic Plants, and Biochambers now have the correct amount of base productivity (55%) instead of the bugged 5%.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.1
 Date: 15AUG2025
   Minor Fix:
