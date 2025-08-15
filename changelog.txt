@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 1.0.2
+Version: 1.0.3
 Date: 16AUG2025
   Bugfix:
     - Fixed a bug from 1.0.2 where all machines had 55% productivity. Lol.
