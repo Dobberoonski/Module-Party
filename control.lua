@@ -28,6 +28,14 @@ local function getRandomModule()
     }
 end
 
+local function removeModulesFromInventory(inventory)
+    --removeModulesFromInventory : defines.inventory -> 
+    items = inventory.get_contents()--item = {name, count, quality}
+    for _,item in pairs(items) do
+        if string.find(item.name, "-module") then inventory.remove(item) end
+    end
+end
+
 script.on_event(defines.events.on_built_entity, function(event)
     if not isAffectedEntityType(event.entity.type) then return false end
     while(event.entity.get_module_inventory().is_full() == false) do
@@ -38,4 +46,17 @@ end)
 script.on_event(defines.events.on_pre_player_mined_item, function(event)
     if not isAffectedEntityType(event.entity.type) then return false end
     event.entity.get_module_inventory().clear()
+end)
+
+script.on_event(defines.events.on_marked_for_deconstruction, function(event)
+    if not isAffectedEntityType(event.entity.type) then return false end
+    event.entity.get_module_inventory().clear()
+end)
+
+script.on_event(defines.events.on_player_main_inventory_changed, function(event)
+    removeModulesFromInventory(game.get_player(event.player_index).get_inventory(defines.inventory.character_main))
+end)
+
+script.on_event(defines.events.on_player_trash_inventory_changed, function(event)
+    removeModulesFromInventory(game.get_player(event.player_index).get_inventory(defines.inventory.character_trash))
 end)

@@ -1,5 +1,15 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.0
-Date: ddmmmyyyy
+Date: 15AUG2025
   Major Features:
     - Initial mod release!!
+    - All machines that CAN have modules, DO have modules. It's a module party!
+    - Modules are completely random!
+    - Higher quality buildings have MORE MODULE SLOTS!!! EPIC! LEGENDARY!!
+    - The player cannot have modules in their inventory and mined/deconstructed machines will lose their modules. No cheating!
+    - Affected machines have an innate +5% to all possible effects!
+    - Vanilla recipies are slightly altered to allow more module effects (i.e. electric furnaces can take prod).
+    - Some early game items (and even some late) now take modules.
+  Notes:
+    - May have adverse reactions with other mods that deeply affect quality and/or modules (e.g. no-quality). Such interactions are largely untested. Buyer beware!
+    - Please report any bugs/suggestions to the mod author!
