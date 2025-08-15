@@ -1,4 +1,9 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.1
+Date: 15AUG2025
+  Minor Fix:
+    - Quality Module (Technology) is researched at the beginning of the game to unlock uncommon and rare quality.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.0
 Date: 15AUG2025
   Major Features:
