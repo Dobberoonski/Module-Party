@@ -1,2 +1,2 @@
 # Module-Party
-wip factorio mod
+Factorio challenge mod
