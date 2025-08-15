@@ -43,6 +43,13 @@ script.on_event(defines.events.on_built_entity, function(event)
     end
 end)
 
+script.on_event(defines.events.on_robot_built_entity, function(event)
+    if not isAffectedEntityType(event.entity.type) then return false end
+    while(event.entity.get_module_inventory().is_full() == false) do
+        event.entity.get_module_inventory().insert(getRandomModule())
+    end
+end)
+
 script.on_event(defines.events.on_pre_player_mined_item, function(event)
     if not isAffectedEntityType(event.entity.type) then return false end
     event.entity.get_module_inventory().clear()
