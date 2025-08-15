@@ -20,3 +20,7 @@ qualityModuleTwoTech.prerequisites = {
     "modules",
     "space-science-pack"
 }
+
+data.raw["assembling-machine"]["foundry"].effect_receiver.base_effect.productivity = 0.55
+data.raw["assembling-machine"]["electromagnetic-plant"].effect_receiver.base_effect.productivity = 0.55
+data.raw["assembling-machine"]["biochamber"].effect_receiver.base_effect.productivity = 0.55
