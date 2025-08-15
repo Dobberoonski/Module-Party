@@ -7,17 +7,6 @@ local qualitySlotsModuleBonus = {--TODO: mod settings
     ["legendary"] = 5
 }
 
-local getReadyToParty = {--made redundant
-    type = "direct",
-    action_delivery = {
-        type = "instant",
-        source_effects = {
-            type = "script",
-            effect_id = "get-ready-to-party"
-         }
-    }
-}
-
 local affectedEntityTypes = {
     "assembling-machine",
     "mining-drill",
@@ -35,33 +24,32 @@ local allowedEffects = {
     --bruhmoment.mp4
 }
 
---[[assembling-machine-1]]
+local effectReceiver = {
+    base_effect = {
+        consumption = -0.05,
+        speed = 0.05,
+        productivity = 0.05,
+        pollution = -0.05,
+        quality = 0.5
+    },
+    uses_module_effects = true,
+    uses_beacon_effects = true,
+    uses_surface_effects = true
+}
+
 data.raw["assembling-machine"]["assembling-machine-1"].module_slots = 1--we do a little bit of trolling.
-
---[[captive-biter-spawner]]
-local captiveBiterSpawner = data.raw["assembling-machine"]["captive-biter-spawner"]
-captiveBiterSpawner.module_slots = 1--ok we do a lot of trolling.
-captiveBiterSpawner.allowed_effects = allowedEffects
-
---[[burner-mining-drill]]
-local burnerMiningDrill = data.raw["mining-drill"]["burner-mining-drill"]
-burnerMiningDrill.module_slots = 1--absolutely humongous levels of trolling.
-burnerMiningDrill.allowed_effects = allowedEffects
-
---[[stone/steel-furnace]]
-local stoneFurnace = data.raw["furnace"]["stone-furnace"]
-stoneFurnace.module_slots = 1--gigantamaxx trolling.
-stoneFurnace.allowed_effects = allowedEffects
-local steelFurnace = data.raw["furnace"]["steel-furnace"]
-steelFurnace.module_slots = 2--trollface.png
-steelFurnace.allowed_effects = allowedEffects
+data.raw["assembling-machine"]["captive-biter-spawner"].module_slots = 1--ok we do a lot of trolling.
+data.raw["mining-drill"]["burner-mining-drill"].module_slots = 1--absolutely humongous levels of trolling.
+data.raw["furnace"]["stone-furnace"].module_slots = 1--gigantamaxx trolling.
+data.raw["furnace"]["steel-furnace"].module_slots = 2--trollface.png
 data.raw["furnace"]["electric-furnace"].module_slots = 3--i bet you thought i was done lol
 
 for _,entityType in pairs(affectedEntityTypes) do
     for __,entity in pairs(data.raw[entityType]) do
         entity.quality_affects_module_slots = true
         entity.quality_slots_module_bonus = qualitySlotsModuleBonus
-        --entity.created_effect = getReadyToParty
+        entity.allowed_effects = allowedEffects
+        entity.effect_receiver = effectReceiver
     end
 end
 
