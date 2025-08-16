@@ -9,7 +9,20 @@ local affectedEntityTypes = {
 
 local moduleName = {"productivity", "efficiency", "speed", "quality"}
 local moduleTier = {"", "-2", "-3"}
-local moduleQuality = {"normal", "uncommon", "rare", "epic", "legendary"}
+
+--[[Modify properties depending on if other mods are installed here.]]
+
+--Adds support for mods that extend quality tiers
+local moduleQuality = {}
+for _,q in pairs(prototypes.quality) do
+    table.insert(moduleQuality, q.name)
+end
+
+--[[================================================================]]
+
+local lenName = #moduleName
+local lenTier = #moduleTier
+local lenQuality = #moduleQuality
 
 local function isAffectedEntityType(entityType)
     --isAffectedEntityType : entity.type -> bool
@@ -22,9 +35,9 @@ end
 local function getRandomModule()
     --getRandomModule : -> table
     return {
-        name=moduleName[math.random(4)].. "-module".. moduleTier[math.random(3)],
+        name=moduleName[math.random(lenName)].. "-module".. moduleTier[math.random(lenTier)],
         count=1,
-        quality=moduleQuality[math.random(5)]
+        quality=moduleQuality[math.random(lenQuality)]
     }
 end
 
