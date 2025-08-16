@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.4
+Date: 16AUG2025
+  Minor Features:
+    - Added support for mods that add/remove module categories (pollution modules, etc.)
+    - Added support for mods that extend quality tiers (Quality++ | Extended Qualities, etc.)
+    - Added specific support for Quality++ | Extended Qualities to increase number of bonus module slots to machines.
+---------------------------------------------------------------------------------------------------
 Version: 1.0.3
 Date: 16AUG2025
   Bugfix:
