@@ -7,18 +7,22 @@ local affectedEntityTypes = {
     "beacon"
 }
 
-local moduleName = {"productivity", "efficiency", "speed", "quality"}
 local moduleTier = {"", "-2", "-3"}
 
---[[Modify properties depending on if other mods are installed here.]]
+--Adds support for mods that add/remove module categories (prod, speed, etc)
+local moduleName = {}
+for _,m in pairs(prototypes.module_category) do
+    if m.name ~= "ai-speed" then
+        --preclude Moshine's ai-speed-module-x (crashes game)
+        table.insert(moduleName, m.name)
+    end
+end
 
 --Adds support for mods that extend quality tiers
 local moduleQuality = {}
 for _,q in pairs(prototypes.quality) do
     table.insert(moduleQuality, q.name)
 end
-
---[[================================================================]]
 
 local lenName = #moduleName
 local lenTier = #moduleTier
