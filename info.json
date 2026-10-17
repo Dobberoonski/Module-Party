@@ -1,15 +1,15 @@
 {
     "name": "Module-Party",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "title": "Module Party",
     "author": "Dobberoonski",
     "contact": "versericaw@gmail.com",
     "homepage": "https://github.com/Dobberoonski",
     "description": "All machines that CAN have modules, DO have modules. It's a module party!",
-    "factorio_version": "2.0",
+    "factorio_version": "2.1",
     "dependencies": [
-        "base >= 2.0.60",
-        "space-age >= 2.0.60"
+        "base >= 2.1.22",
+        "space-age >= 2.1.22"
     ],
     "quality_required": true,
     "rail_bridges_required": true,
