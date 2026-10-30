@@ -12,10 +12,11 @@ local moduleTier = {"", "-2", "-3"}
 --Adds support for mods that add/remove module categories (prod, speed, etc)
 local moduleName = {}
 for _,m in pairs(prototypes.module_category) do
-    if m.name ~= "ai-speed" then
-        --preclude Moshine's ai-speed-module-x (crashes game)
+    repeat
+        if m.name == "ai-speed" then break end--preclude Moshine's ai-speed-module-x
+        if m.name == "kr-ai-core" then break end--preclude K2SO's/Moshine's kr-ai-core-module-x
         table.insert(moduleName, m.name)
-    end
+    until true
 end
 
 --Adds support for mods that extend quality tiers
