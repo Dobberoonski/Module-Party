@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.6
+Date: 31OCT2026
+  Bugfix:
+    - Precluded use of K2SO/Moshine's kr-ai-core-module causing games to crash.
+  Misc:
+    - Reduced dependencies on Space Age.
+  Halloween:
+    - Trick or Treat!
+---------------------------------------------------------------------------------------------------
 Version: 1.0.5
 Date: 17OCT2026
   Misc:
