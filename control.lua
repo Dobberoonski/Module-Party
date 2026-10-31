@@ -12,10 +12,12 @@ local moduleTier = {"", "-2", "-3"}
 --Adds support for mods that add/remove module categories (prod, speed, etc)
 local moduleName = {}
 for _,m in pairs(prototypes.module_category) do
-    if m.name ~= "ai-speed" then
-        --preclude Moshine's ai-speed-module-x (crashes game)
+    repeat
+        if m.name == "ai-speed" then break end--preclude Moshine's ai-speed-module-x
+        if m.name == "kr-ai-core" then break end--preclude K2SO's/Moshine's kr-ai-core-module-x
+        if m.name == "mupgrade" then break end--preclude Rubia's internal upgrade modules
         table.insert(moduleName, m.name)
-    end
+    until true
 end
 
 --Adds support for mods that extend quality tiers
@@ -24,29 +26,38 @@ for _,q in pairs(prototypes.quality) do
     table.insert(moduleQuality, q.name)
 end
 
-local lenName = #moduleName
-local lenTier = #moduleTier
-local lenQuality = #moduleQuality
-
-local function isAffectedEntityType(entityType)
-    --isAffectedEntityType : entity.type -> bool
+local function isAffectedEntityType(entityType)--: entity.type -> bool
     for _,t in pairs(affectedEntityTypes) do
         if entityType == t then return true end
     end
     return false
 end
 
-local function getRandomModule()
-    --getRandomModule : -> table
+local function isCompatibleEntity(entityName)--: entity.name -> bool
+    if script.active_mods["Moshine"] ~= nil then
+        --Preclude special Moshine buildings that only take ai-speed modules
+        return not prototypes.entity[entityName].allowed_module_categories["ai-speed"]
+    end
+    return true
+end
+
+local function getRandomModule()--: UNIT -> table
     return {
-        name=moduleName[math.random(lenName)].. "-module".. moduleTier[math.random(lenTier)],
+        name=moduleName[math.random(#moduleName)].. "-module".. moduleTier[math.random(#moduleTier)],
         count=1,
-        quality=moduleQuality[math.random(lenQuality)]
+        quality=moduleQuality[math.random(#moduleQuality)]
     }
 end
 
-local function removeModulesFromInventory(inventory)
-    --removeModulesFromInventory : defines.inventory -> 
+local function addModulesToEntity(entity)--PULLBACK: entity -> COUNIT
+    if not isAffectedEntityType(entity.type) then return false end
+    if not isCompatibleEntity(entity.name) then return false end
+    while(entity.get_module_inventory().is_full() == false) do
+        entity.get_module_inventory().insert(getRandomModule())
+    end
+end
+
+local function removeModulesFromInventory(inventory)--: defines.inventory -> COUNIT
     items = inventory.get_contents()--item = {name, count, quality}
     for _,item in pairs(items) do
         if string.find(item.name, "-module") then inventory.remove(item) end
@@ -54,17 +65,11 @@ local function removeModulesFromInventory(inventory)
 end
 
 script.on_event(defines.events.on_built_entity, function(event)
-    if not isAffectedEntityType(event.entity.type) then return false end
-    while(event.entity.get_module_inventory().is_full() == false) do
-        event.entity.get_module_inventory().insert(getRandomModule())
-    end
+    addModulesToEntity(event.entity)
 end)
 
 script.on_event(defines.events.on_robot_built_entity, function(event)
-    if not isAffectedEntityType(event.entity.type) then return false end
-    while(event.entity.get_module_inventory().is_full() == false) do
-        event.entity.get_module_inventory().insert(getRandomModule())
-    end
+    addModulesToEntity(event.entity)
 end)
 
 script.on_event(defines.events.on_pre_player_mined_item, function(event)

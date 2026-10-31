@@ -1,21 +1,18 @@
 {
     "name": "Module-Party",
-    "version": "1.0.5",
+    "version": "1.0.7",
     "title": "Module Party",
     "author": "Dobberoonski",
     "contact": "versericaw@gmail.com",
     "homepage": "https://github.com/Dobberoonski",
     "description": "All machines that CAN have modules, DO have modules. It's a module party!",
     "factorio_version": "2.1",
-    "dependencies": [
-        "base >= 2.1.22",
-        "space-age >= 2.1.22"
-    ],
-    "quality_required": true,
-    "rail_bridges_required": true,
+    "dependencies": ["base >= 2.1", "space-age", "? Moshine"],
+    "quality_required": false,
+    "rail_bridges_required": false,
     "space_travel_required": true,
     "spoiling_required": true,
-    "freezing_required": true,
-    "segmented_units_required": true,
-    "expansion_shaders_required": true
+    "freezing_required": false,
+    "segmented_units_required": false,
+    "expansion_shaders_required": false
 }
