@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.8
+Date 31OCT2026
+  Minor Features:
+    - Quality Slots Module Bonus is now based on Quality Level to support mods that add many/infinite quality levels.
+  Special Thanks:
+    - To Maniel73 for the suggestion and implementation!
+---------------------------------------------------------------------------------------------------
 Version: 1.0.7
 Date: 31OCT2026
   Bugfix:
