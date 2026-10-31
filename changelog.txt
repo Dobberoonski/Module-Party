@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.0.7
+Date: 31OCT2026
+  Bugfix:
+    - Precluded use of Rubia's internal building modules causing games to crash.
+  Halloween:
+    - Trick or Treat!
+---------------------------------------------------------------------------------------------------
 Version: 1.0.6
 Date: 31OCT2026
   Bugfix:

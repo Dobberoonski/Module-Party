@@ -15,6 +15,7 @@ for _,m in pairs(prototypes.module_category) do
     repeat
         if m.name == "ai-speed" then break end--preclude Moshine's ai-speed-module-x
         if m.name == "kr-ai-core" then break end--preclude K2SO's/Moshine's kr-ai-core-module-x
+        if m.name == "mupgrade" then break end--preclude Rubia's internal upgrade modules
         table.insert(moduleName, m.name)
     until true
 end
