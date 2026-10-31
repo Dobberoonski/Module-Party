@@ -1,12 +1,4 @@
 --data.lua
-local qualitySlotsModuleBonus = {--TODO: mod settings
-    ["normal"] = 0,
-    ["uncommon"] = 1,
-    ["rare"] = 2,
-    ["epic"] = 3,
-    ["legendary"] = 5
-}
-
 local affectedEntityTypes = {
     "assembling-machine",
     "mining-drill",
@@ -43,19 +35,10 @@ data.raw["furnace"]["stone-furnace"].module_slots = 1
 data.raw["furnace"]["steel-furnace"].module_slots = 2
 data.raw["furnace"]["electric-furnace"].module_slots = 3--ok we do a lot of trolling.
 
---[[Modify properties depending on if other mods are installed here.]]
-
-if mods["Quality-Plus-Plus"] then
-    local qualitySlotsModuleBonus_Additional = {
-        ["mythical"] = 6,
-        ["masterwork"] = 7,
-        ["wondrous"] = 8,
-        ["artifactual"] = 10
-    }
-    table.insert(qualitySlotsModuleBonus, qualitySlotsModuleBonus_Additional)
+local qualitySlotsModuleBonus = {}
+for name, quality in pairs(data.raw["quality"]) do
+    qualitySlotsModuleBonus[name] = quality.level
 end
-
---[[================================================================]]
 
 for _,entityType in pairs(affectedEntityTypes) do
     for __,entity in pairs(data.raw[entityType]) do
