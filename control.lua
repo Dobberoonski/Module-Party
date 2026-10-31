@@ -37,6 +37,15 @@ local function isAffectedEntityType(entityType)
     return false
 end
 
+local function isCompatibleEntity(entityName)
+    --isCompatibleEntity : entity -> bool
+    if script.active_mods["Moshine"] ~= nil then
+        --Preclude special Moshine buildings that only take ai-speed modules
+        return not prototypes.entity[entityName].allowed_module_categories["ai-speed"]
+    end
+    return true
+end
+
 local function getRandomModule()
     --getRandomModule : -> table
     return {
@@ -44,6 +53,15 @@ local function getRandomModule()
         count=1,
         quality=moduleQuality[math.random(lenQuality)]
     }
+end
+
+local function addModulesToEntity(entity)
+    --pullthrough helper function
+    if not isAffectedEntityType(entity.type) then return false end
+    if not isCompatibleEntity(entity.name) then return false end
+    while(entity.get_module_inventory().is_full() == false) do
+        entity.get_module_inventory().insert(getRandomModule())
+    end
 end
 
 local function removeModulesFromInventory(inventory)
@@ -55,17 +73,11 @@ local function removeModulesFromInventory(inventory)
 end
 
 script.on_event(defines.events.on_built_entity, function(event)
-    if not isAffectedEntityType(event.entity.type) then return false end
-    while(event.entity.get_module_inventory().is_full() == false) do
-        event.entity.get_module_inventory().insert(getRandomModule())
-    end
+    addModulesToEntity(event.entity)
 end)
 
 script.on_event(defines.events.on_robot_built_entity, function(event)
-    if not isAffectedEntityType(event.entity.type) then return false end
-    while(event.entity.get_module_inventory().is_full() == false) do
-        event.entity.get_module_inventory().insert(getRandomModule())
-    end
+    addModulesToEntity(event.entity)
 end)
 
 script.on_event(defines.events.on_pre_player_mined_item, function(event)
